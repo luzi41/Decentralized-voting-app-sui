@@ -5,7 +5,7 @@ compiled_package_info:
     smart_contract: "0000000000000000000000000000000000000000000000000000000000000000"
     std: "0000000000000000000000000000000000000000000000000000000000000001"
     sui: "0000000000000000000000000000000000000000000000000000000000000002"
-  source_digest: 466EDF4072E4516C45B67C65F056F55424CC933D54EDABA6E0C95F92BDBEB511
+  source_digest: 1231A9BCA4867C92BC5D4ED1599C87DB426A94835AEB2296DE18E780A8383B39
   build_flags:
     dev_mode: false
     test_mode: false
@@ -14,7 +14,7 @@ compiled_package_info:
     force_recompilation: false
     lock_file: ".\\Move.lock"
     fetch_deps_only: false
-    skip_fetch_latest_git_deps: false
+    skip_fetch_latest_git_deps: true
     default_flavor: sui
     default_edition: ~
     deps_as_root: false

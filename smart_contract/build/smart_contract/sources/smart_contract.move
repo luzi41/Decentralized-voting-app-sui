@@ -18,6 +18,17 @@ module smart_contract::smart_contract {
         voted : bool,
     }
 
+    public struct User has store, drop, copy{
+        user_address : address,
+        created_elections : vector<address>,
+        elections_involved : vector<address>,
+    }
+
+    public struct Users has key{
+        id : UID,
+        users : vector<User>,
+    }
+
     public struct Election has key{
         id: UID,
         name: String,
@@ -31,7 +42,15 @@ module smart_contract::smart_contract {
         taken_place : bool
     }
 
-    public fun create_election(name: String, description: String, ctx : &mut TxContext){
+    fun init(ctx : &mut TxContext){
+        let users: Users = Users{
+            id: object::new(ctx),
+            users : vector::empty<User>(),
+        };
+        transfer::share_object(users)
+    }
+
+    public fun create_election(name: String, description: String, users : &mut Users, ctx : &mut TxContext){
         let election : Election = Election {
             id: object::new(ctx),
             name: name,
@@ -43,6 +62,22 @@ module smart_contract::smart_contract {
             end_time: 0,
             election_in_progress: false,
             taken_place : false
+        };
+        let election_id : address = object::id_address(&election);
+
+        let sender: address = tx_context::sender(ctx);
+        let (user_exists , index) = check_user(sender, users);
+        if (user_exists){
+            let user = vector::borrow_mut(&mut users.users, index);
+            vector::push_back(&mut user.created_elections, election_id);
+        }else{
+            let mut user : User = User{
+                user_address : sender,
+                created_elections : vector::empty<address>(),
+                elections_involved : vector::empty<address>(),
+            };
+            vector::push_back(&mut user.created_elections, election_id);
+            vector::push_back(&mut users.users, user);
         };
 
         transfer::share_object(election);
@@ -61,13 +96,30 @@ module smart_contract::smart_contract {
     }
 
 
-    public fun register_voter(name: String, voters_address : address, election : &mut Election){
+    public fun register_voter(name: String, voters_address : address, election : &mut Election, users : &mut Users){
         let voter : Voters = Voters {
             name: name,
             voters_address : voters_address,
             voted : false
         };
         vector::push_back(&mut election.registered_voters, voter);
+
+        let election_id : address = object::id_address(election);
+
+        let (user_exists , index) = check_user(voters_address, users);
+        if (user_exists){
+            let user = vector::borrow_mut(&mut users.users, index);
+            vector::push_back(&mut user.elections_involved, election_id);
+        }else{
+            let mut user : User = User{
+                user_address : voters_address,
+                created_elections : vector::empty<address>(),
+                elections_involved : vector::empty<address>(),
+            };
+            vector::push_back(&mut user.elections_involved, election_id);
+            vector::push_back(&mut users.users, user);
+        };
+
     }
 
     public fun add_candidate(name: String, candidate_address : address, description: String, election : &mut Election){
@@ -78,6 +130,25 @@ module smart_contract::smart_contract {
             vote_count: 0,
         };
         vector::push_back(&mut election.candidates, candidate);
+    }
+
+    public fun remove_candidate(candidate_address : address, election : &mut Election){
+        let (valid_candidate, index) = check_candidate(candidate_address, election);
+        assert!(valid_candidate, INVALID);
+        vector::remove(&mut election.candidates, index);
+    }
+
+    fun check_user(user_address : address, users : &Users) : (bool, u64){
+        let mut i = 0;
+        let num_users = vector::length(&users.users);
+        while(i < num_users){
+            let voter = vector::borrow(&users.users, i);
+            if (voter.user_address == user_address){
+                return (true, i)
+            };
+            i = i + 1;
+        };
+        return (false, 0)
     }
 
     fun check_voter(voters_address : address, election : &Election) : bool{
@@ -106,17 +177,17 @@ module smart_contract::smart_contract {
         return false
     }
     
-    fun check_candidate(candidate_address : address, election : &Election) : bool{
+    fun check_candidate(candidate_address : address, election : &Election) : (bool, u64){
         let mut i = 0;
         let num_candidates = vector::length(&election.candidates);
         while(i < num_candidates){
             let candidate = vector::borrow(&election.candidates, i);
             if (candidate.candidate_address == candidate_address){
-                return true
+                return (true, i)
             };
             i = i + 1;
         };
-        return false
+        return (false, 0)
     }
 
     fun add_candidate_vote(candidate_address : address, election : &mut Election){
@@ -181,7 +252,7 @@ module smart_contract::smart_contract {
     public fun vote(candidate_address : address, election : &mut Election, ctx : &mut TxContext): bool{
         let sender: address = tx_context::sender(ctx);
         let valid_voter : bool = check_voter(sender, election);
-        let valid_candidate : bool = check_candidate(candidate_address, election);
+        let (valid_candidate, _) = check_candidate(candidate_address, election);
         let check_voted : bool = check_voted(sender, election);
         assert!(valid_voter && !check_voted && valid_candidate && election.election_in_progress && !election.taken_place, INVALID);
         let voted : bool = user_vote(sender, candidate_address, election);
@@ -191,7 +262,7 @@ module smart_contract::smart_contract {
     public fun unvote(candidate_address : address, election : &mut Election, ctx : &mut TxContext): bool{
         let sender: address = tx_context::sender(ctx);
         let valid_voter : bool = check_voter(sender, election);
-        let valid_candidate : bool = check_candidate(candidate_address, election);
+        let (valid_candidate, _) = check_candidate(candidate_address, election);
         let check_voted : bool = check_voted(sender, election);
         assert!(valid_voter && check_voted && valid_candidate && election.election_in_progress && !election.taken_place, INVALID);
         let unvoted : bool = user_unvote(sender, candidate_address, election);
@@ -208,6 +279,13 @@ module smart_contract::smart_contract {
 
     public fun get_voters(election : &Election) : vector<Voters>{
         return election.registered_voters
+    }
+
+    public fun get_voter_vote_status(election : &Election, ctx : &mut TxContext) : bool{
+        let sender: address = tx_context::sender(ctx);
+        let valid_voter : bool = check_voter(sender, election);
+        assert!(valid_voter, INVALID);
+        return check_voted(sender, election)
     }
 
 }
