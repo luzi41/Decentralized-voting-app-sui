@@ -36,6 +36,7 @@ module smart_contract::smart_contract {
         vote_count: u64,
         candidates: vector<Candidate>,
         registered_voters: vector<Voters>,
+        created_by: address,
         start_time: u64,
         end_time: u64,
         election_in_progress: bool,
@@ -51,6 +52,7 @@ module smart_contract::smart_contract {
     }
 
     public fun create_election(name: String, description: String, users : &mut Users, ctx : &mut TxContext){
+        let sender: address = tx_context::sender(ctx);
         let election : Election = Election {
             id: object::new(ctx),
             name: name,
@@ -58,6 +60,7 @@ module smart_contract::smart_contract {
             vote_count: 0,
             candidates: vector::empty<Candidate>(),
             registered_voters: vector::empty<Voters>(),
+            created_by: sender,
             start_time: 0,
             end_time: 0,
             election_in_progress: false,
@@ -65,7 +68,6 @@ module smart_contract::smart_contract {
         };
         let election_id : address = object::id_address(&election);
 
-        let sender: address = tx_context::sender(ctx);
         let (user_exists , index) = check_user(sender, users);
         if (user_exists){
             let user = vector::borrow_mut(&mut users.users, index);
@@ -83,7 +85,10 @@ module smart_contract::smart_contract {
         transfer::share_object(election);
     }
 
-    public fun start_election(election : &mut Election, end_time_ms: u64,clock: &mut Clock){
+    public fun start_election(election : &mut Election, end_time_ms: u64,clock: &mut Clock, ctx : &mut TxContext){
+        let sender: address = tx_context::sender(ctx);
+        assert!(sender == election.created_by, INVALID);
+        assert!(election.taken_place == false, INVALID);
         election.election_in_progress = true;
         election.start_time = clock.timestamp_ms();
         election.end_time = clock.timestamp_ms() + end_time_ms;
