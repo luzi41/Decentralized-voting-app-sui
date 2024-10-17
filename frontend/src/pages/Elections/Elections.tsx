@@ -29,6 +29,18 @@ const Elections: React.FC = () => {
         { id: "2", name: "Gubernatorial Election", status: "ended", voter_status: "voted" },
     ];
 
+    const handleCreatedElectionClick = (id: string, electionStatus: string) => {
+        if (electionStatus === "in-progress" || electionStatus === "ended") {
+            navigate(`/election2/${id}`);
+        }
+        else if (electionStatus === "not started") {
+            navigate(`/register/${id}`);
+        }
+        else {
+            navigate(`/election/${id}`);
+        }
+    };
+
     const handleElectionClick = (id: string) => {
         navigate(`/election/${id}`);
     };
@@ -73,9 +85,9 @@ const Elections: React.FC = () => {
                             key={election.id}
                             className="election-item"
                             style={{ borderLeft: `6px solid ${getStatusColor(election.status)}` }}
-                            onClick={() => handleElectionClick(election.id)}
+                            onClick={() => handleCreatedElectionClick(election.id, election.status)}
                         >
-                            <span className="election-name">{election.name}</span>
+                            <span className="election-name-main">{election.name}</span>
                             <span className="election-status">{election.status}</span>
                         </li>
                     ))}
@@ -94,7 +106,7 @@ const Elections: React.FC = () => {
                             onClick={() => handleElectionClick(election.id)}
                         >
                             {/* {election.name}{" "} */}
-                            <span className="election-name">{election.name}</span>
+                            <span className="election-name-main">{election.name}</span>
                             <span className="election-status">
                                 Status: {election.status} | Voter Status: {election.voter_status}
                             </span>

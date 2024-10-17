@@ -1,0 +1,94 @@
+/* CreateElection.css */
+
+.create-election-page {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.main-heading {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    letter-spacing: 1.2px;
+}
+
+.main-image {
+    max-width: 10%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #34495e;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 1.1rem;
+    color: #34495e;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+.create-election-button-2 {
+    display: block;
+    margin: 30px auto 0;
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-election-button-2:hover {
+    background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+    .create-election-page {
+        padding: 15px;
+    }
+
+    .main-heading {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .create-election-button-2 {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}

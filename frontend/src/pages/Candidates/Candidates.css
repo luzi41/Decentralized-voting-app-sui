@@ -1,0 +1,187 @@
+/* Candidate.css */
+
+.Candidates {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(145deg, #f4f4f9, #f4f4f9);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.heading-section {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.main-heading {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+
+.main-heading::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 5px;
+    background-color: #3498db;
+    margin: 10px auto 0;
+}
+
+.main-image {
+    width: 150px;
+    height: auto;
+    animation: spin 8s linear infinite;
+    margin-bottom: 20px;
+    transform-origin: center;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.election-details {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.election-details:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.election-details h2{
+    font-size: 1.8rem;
+    color: #34495e;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.election-details p {
+    font-size: 1.1rem;
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.election-details ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+.election-details li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.candidates-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.candidate-card {
+    flex: 1 1 calc(33.33% - 20px);
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.candidate-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: #fff;
+}
+
+.candidate-card:hover h3,
+.candidate-card:hover p {
+    color: #fff;
+}
+
+.candidate-picture {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.candidate-card:hover .candidate-picture {
+    transform: scale(1.1);
+    border: 4px solid #fff;
+}
+
+.candidate-card h3 {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.candidate-card p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.candidate-card button {
+    padding: 12px 25px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.candidate-card button:hover {
+    background-color: #29b94d;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .candidates-list {
+        flex-direction: column;
+    }
+
+    .candidate-card {
+        flex: 1 1 100%;
+    }
+
+    .main-heading {
+        font-size: 2rem;
+    }
+
+    .main-image {
+        max-width: 20%;
+    }
+}

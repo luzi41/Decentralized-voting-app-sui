@@ -81,11 +81,11 @@ export class SMCInteraction {
         return transaction;
     }
 
-    async AddCandidate(name: string, candidate_address: string, description: string, election: string) {
+    async AddCandidate(name: string, candidate_address: string, description: string, image: string, election: string) {
         const transaction = new Transaction();
         transaction.moveCall({
             target: `${PACKAGE_ID}::smart_contract::add_candidate`,
-            arguments: [transaction.pure.string(name), transaction.pure.address(candidate_address), transaction.pure.string(description), transaction.object(election)],
+            arguments: [transaction.pure.string(name), transaction.pure.address(candidate_address), transaction.pure.string(description), transaction.pure.string(image), transaction.object(election)],
         });
         return transaction;
     }
@@ -167,6 +167,7 @@ export class SMCInteraction {
                     candidate_address: this.Address,
                     name: bcs.string(),
                     description: bcs.string(),
+                    image: bcs.string(),
                     vote_count: bcs.u64(),
                 });
                 let candidates = bcs.vector(Candidate).parse(Uint8Array.from(returnValues[0][0][0]));

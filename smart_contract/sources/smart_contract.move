@@ -9,6 +9,7 @@ module smart_contract::smart_contract {
         candidate_address: address,
         name: String,
         description: String,
+        image_url : String,
         vote_count: u64,
     }
 
@@ -91,7 +92,7 @@ module smart_contract::smart_contract {
         assert!(election.taken_place == false, INVALID);
         election.election_in_progress = true;
         election.start_time = clock.timestamp_ms();
-        election.end_time = clock.timestamp_ms() + end_time_ms;
+        election.end_time = end_time_ms;
     }
 
     public fun end_election(election : &mut Election, clock: &mut Clock){
@@ -99,7 +100,6 @@ module smart_contract::smart_contract {
         election.election_in_progress = false;
         election.taken_place = true;
     }
-
 
     public fun register_voter(name: String, voters_address : address, election : &mut Election, users : &mut Users){
         let voter : Voters = Voters {
@@ -127,11 +127,12 @@ module smart_contract::smart_contract {
 
     }
 
-    public fun add_candidate(name: String, candidate_address : address, description: String, election : &mut Election){
+    public fun add_candidate(name: String, candidate_address : address, description: String, image_url: String, election : &mut Election){
         let candidate : Candidate = Candidate {
             candidate_address: candidate_address,
             name: name,
             description: description,
+            image_url: image_url,
             vote_count: 0,
         };
         vector::push_back(&mut election.candidates, candidate);

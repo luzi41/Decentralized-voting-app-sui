@@ -1,0 +1,255 @@
+/* Main Container */
+.register-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Heading */
+.main-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    letter-spacing: 1.2px;
+}
+
+/* Election Info Styling */
+.election-name,
+.election-description,
+.election-address {
+    text-align: center;
+    color: #34495e;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+/* Main Image */
+.main-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 10%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Section Container */
+.sections-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Section Styling */
+.section {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Headings in Sections */
+h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    color: #34495e;
+    margin-bottom: 8px;
+}
+
+/* Input and Textarea Fields */
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: #34495e;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.register-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.start-election-button {
+    display: block;
+    margin: 0 auto 30px auto;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.start-election-button:hover {
+    background-color: #35e84d;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* General List Section */
+.list-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-section li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Candidate List */
+.candidate-image-m {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.list-section li div {
+    flex: 1;
+    overflow: hidden;
+}
+
+.list-section li div strong {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.list-section li div p {
+    font-size: 0.9rem;
+    color: #34495e;
+    margin: 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* Voter List */
+.list-section li {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.list-section li strong {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+
+.list-section li span p{
+    font-size: 0.9rem;
+    color: #2c3e50;
+    /* This ensures the voter address is no longer white */
+    word-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
+}
+
+.voter-address {
+    color: #2c3e50;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .list-section li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .candidate-image-m {
+        margin-bottom: 10px;
+    }
+
+    .list-section li div p {
+        white-space: normal;
+    }
+}
+
+/* Input Fields on Small Screens */
+@media (max-width: 768px) {
+    .sections-container {
+        flex-direction: column;
+    }
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    .main-heading {
+        font-size: 2rem;
+    }
+}
