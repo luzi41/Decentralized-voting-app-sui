@@ -36,8 +36,6 @@ const ElectionDetails = ({ election, hasVoted, setHasVoted }: any) => {
 
     // Handle vote button click
     const handleVote = async (candidateId: any) => {
-        const userConfirmed = window.confirm("Are you sure you want to vote for this candidate?");
-        if (userConfirmed) {
             try {
                 const trx = await vote(`0x${candidateId}`, election.address);
                 signAndExecuteTransaction(
@@ -59,7 +57,6 @@ const ElectionDetails = ({ election, hasVoted, setHasVoted }: any) => {
             } catch (error) {
                 console.error("Error during vote transaction:", error);
             }
-        }
     };
 
     return (
