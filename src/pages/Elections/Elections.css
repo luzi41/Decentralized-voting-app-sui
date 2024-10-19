@@ -1,0 +1,225 @@
+.elections-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main-heading {
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    letter-spacing: 1.5px;
+}
+
+.main-image {
+    max-width: 8%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.create-election-button {
+    display: block;
+    margin: 0 auto 30px auto;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-election-button:hover {
+    background-color: #2980b9;
+}
+
+.elections-list {
+    margin-bottom: 30px;
+}
+
+.elections-list h2 {
+    font-size: 1.6rem;
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.election-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    color: #2c3e50;
+}
+
+.election-name-main {
+    flex: 1;
+    text-align: left;
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #2c3e50;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    font-size: 18px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out infinite alternate;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.election-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.election-status {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    text-transform: capitalize;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.election-item::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 4px 0 0 4px;
+}
+
+/* Tablet Screens (up to 1024px) */
+@media (max-width: 1024px) {
+    .main-heading {
+        font-size: 1.8rem;
+    }
+
+    .create-election-button {
+        font-size: 1rem;
+        padding: 10px 16px;
+    }
+
+    .election-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .election-status {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+}
+
+/* Mobile Screens (up to 768px) */
+@media (max-width: 768px) {
+    .elections-container {
+        padding: 15px;
+    }
+
+    .main-heading {
+        font-size: 1.6rem;
+    }
+
+    .main-image {
+        max-width: 10%;
+    }
+
+    .create-election-button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    .election-item {
+        flex-direction: column;
+        padding: 12px 15px;
+    }
+
+    .election-name-main {
+        text-align: left;
+    }
+
+    .election-status {
+        font-size: 0.8rem;
+        margin-top: 8px;
+    }
+}
+
+/* Small Mobile Screens (up to 480px) */
+@media (max-width: 480px) {
+    .elections-container {
+        padding: 10px;
+    }
+
+    .main-heading {
+        font-size: 1.4rem;
+    }
+
+    .create-election-button {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+
+    .election-item {
+        padding: 10px 12px;
+    }
+
+    .election-name-main {
+        font-size: 1rem;
+    }
+
+    .election-status {
+        font-size: 0.75rem;
+    }
+}

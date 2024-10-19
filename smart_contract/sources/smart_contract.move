@@ -86,7 +86,7 @@ module smart_contract::smart_contract {
         transfer::share_object(election);
     }
 
-    public fun start_election(election : &mut Election, end_time_ms: u64,clock: &mut Clock, ctx : &mut TxContext){
+    public fun start_election(election : &mut Election, end_time_ms: u64,clock: &Clock, ctx : &mut TxContext){
         let sender: address = tx_context::sender(ctx);
         assert!(sender == election.created_by, INVALID);
         assert!(election.taken_place == false, INVALID);
@@ -95,7 +95,7 @@ module smart_contract::smart_contract {
         election.end_time = end_time_ms;
     }
 
-    public fun end_election(election : &mut Election, clock: &mut Clock){
+    public fun end_election(election : &mut Election, clock: &Clock){
         assert!(election.election_in_progress && clock.timestamp_ms() > election.end_time, INVALID);
         election.election_in_progress = false;
         election.taken_place = true;
@@ -287,10 +287,21 @@ module smart_contract::smart_contract {
         return election.registered_voters
     }
 
-    public fun get_voter_vote_status(election : &Election, voters_address : address, ctx : &mut TxContext) : bool{
+    public fun get_voter_vote_status(election : &Election, voters_address : address) : bool{
         let valid_voter : bool = check_voter(voters_address, election);
         assert!(valid_voter, INVALID);
-        return check_voted(sender, election)
+        return check_voted(voters_address, election)
     }
 
+    public fun get_user_info(users : &Users, user_address : address) : (vector<address>, vector<address>){
+        let (user_exists , index) = check_user(user_address, users);
+        assert!(user_exists, INVALID);
+        let user = vector::borrow(&users.users, index);
+        return (user.created_elections, user.elections_involved)
+    }
 }
+
+// 0x9d9cd260df6b746b2e7c0ca776409a83ad98010e888eee3cefc0b17aed35058c
+// 0xe1ccba21699164da09b482e264483b9fdaf887aeb7f1e957ced2cdfce1f72e5f
+
+// 0x4c341500dd36814ef8236a1f957840a5e5b0cd43bf83b19209d484fe8afaed05

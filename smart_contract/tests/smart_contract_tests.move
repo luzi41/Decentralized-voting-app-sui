@@ -16,4 +16,4 @@ module smart_contract::smart_contract_tests {
         abort ENotImplemented
     }
 }
-*/
+
