@@ -152,7 +152,7 @@ export class SMCInteraction {
     async checkIfElectionTimeIsElapsed(election: string) {
         const electionInfo = await this.getElectionInfo(election);
         if (electionInfo) {
-            if (Number(electionInfo.end_time) < Date.now() && electionInfo.taken_place === false) {
+            if (Number(electionInfo.end_time) * 1000 < Date.now() && electionInfo.taken_place === false) {
                 const transaction = new Transaction();
                 transaction.moveCall({
                     target: `${PACKAGE_ID}::smart_contract::end_election`,
