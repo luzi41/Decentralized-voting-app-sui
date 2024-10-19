@@ -89,6 +89,5 @@ Feel free to open issues and contribute to this project by submitting pull reque
 
 - [Sui Blockchain](https://sui.io) for providing a robust infrastructure.
 - Open-source libraries and tools used in this project.
-```
 
 This README includes essential sections such as features, installation, usage, and contract details. Adjust any parts based on your specific implementation (especially the frontend part, if present) and add or modify as needed.
