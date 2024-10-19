@@ -59,6 +59,9 @@ export class SMCInteraction {
                 }
             });
 
+            if (balanceChanges) { }
+            
+
             // console.log(objectChanges, balanceChanges);
             if (!objectChanges) {
                 console.error("Error: RPC did not return objectChanges");
