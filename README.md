@@ -1,6 +1,3 @@
-Here’s a sample `README.md` for your decentralized voting application on the Sui blockchain:
-
-```markdown
 # Decentralized Voting Application on Sui Blockchain
 
 A decentralized voting system built on the Sui blockchain, enabling secure, transparent, and tamper-proof elections. This dApp leverages smart contracts to allow users to create elections, cast votes, and view results in a trustless environment.
