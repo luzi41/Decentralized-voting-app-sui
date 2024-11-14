@@ -49,7 +49,7 @@ Switch your SUI Wallet to the same environment network (default devnet) you want
    - Copy the contract address generated from the deployment.
 
 4. **Set Up Environment Variables:**
-   First, get your private key from your SUI wallet:
+   First get your private key from your SUI wallet:
    
    ```bash
    cat ~/.sui/sui_config/sui.keystore
