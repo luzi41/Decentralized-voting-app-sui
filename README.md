@@ -19,6 +19,8 @@ Before running the application, ensure you have the following installed:
 - [Rust](https://www.rust-lang.org/tools/install) for compiling the Sui Move smart contracts.
 - [Sui CLI](https://docs.sui.io/cli/install) for deploying smart contracts.
 
+Switch your SUI Wallet to the same environment network (default devnet) you want to publish your voting smart contract. You need a sufficient amount of gas (sui). You may get some suis from faucet if you are in local, test or dev environment.
+
 ## Installation
 
 1. **Clone the Repository:**
