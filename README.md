@@ -41,7 +41,7 @@ Before running the application, ensure you have the following installed:
      ```bash
      cd smart_contract
      sui move build
-     sui client publish --gas-budget 1000
+     sui client publish --gas-budget 10000001
      ```
 
    - Copy the contract address generated from the deployment.
