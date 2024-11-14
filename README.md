@@ -24,7 +24,7 @@ Before running the application, ensure you have the following installed:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/blockchainBard101/Decentralized-voting-app-sui
+   git clone https://github.com/luzi41/Decentralized-voting-app-sui
    cd Decentralized-voting-app-sui
    ```
 
