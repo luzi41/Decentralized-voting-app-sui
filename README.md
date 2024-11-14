@@ -47,7 +47,12 @@ Before running the application, ensure you have the following installed:
    - Copy the contract address generated from the deployment.
 
 4. **Set Up Environment Variables:**
-
+   First, get your private key from your SUI wallet:
+   
+   ```bash
+   cat ~/.sui/sui_config/sui.keystore
+   ```
+   
    Create a `.env` file in your project directory with the following:
 
    ```env
@@ -55,7 +60,7 @@ Before running the application, ensure you have the following installed:
 
    ```
 
-5. **Run the Application:**
+6. **Run the Application:**
 
    ```bash
    npm run dev
