@@ -43,7 +43,7 @@ Switch your SUI Wallet to the same environment network (default devnet) you want
      ```bash
      cd smart_contract
      sui move build
-     sui client publish --gas-budget 10000001
+     sui client publish --gas-budget 200000010
      ```
 
    - Copy the contract address generated from the deployment.
