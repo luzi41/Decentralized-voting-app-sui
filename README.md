@@ -46,7 +46,7 @@ Switch your SUI Wallet to the same environment network (default devnet) you want
      sui client publish --gas-budget 200000010
      ```
 
-   - Copy the contract address generated from the deployment.
+   - Copy the contract address generated from the deployment and replace PackageID with the contract address.
 
 4. **Set Up Environment Variables:**
    First get your private key from your SUI wallet:
