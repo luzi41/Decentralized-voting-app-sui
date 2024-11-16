@@ -230,7 +230,7 @@ export class SMCInteraction {
 
     async getUserElectionInfo(user_address: string) {
         const userInfo = await this.GetUserInfo(user_address);
-        console.log(userInfo)
+        console.log("Got user info?: " + userInfo)
         if (userInfo) {
             let created_elections = [];
             for (let i = 0; i < userInfo.created_elections.length; i++) {
@@ -278,7 +278,7 @@ export class SMCInteraction {
                         name: election.election_name,
                         status: status,
                         voter_status: voted ? "voted" : "not voted"
-
+  
                     }
                     elections_involved.push(elections_inv);
                 }
@@ -288,6 +288,7 @@ export class SMCInteraction {
                 elections_involved: elections_involved
             }
         } else {
+            console.log("Got no user info!");
             return {
                 created_elections: [],
                 elections_involved: [],
