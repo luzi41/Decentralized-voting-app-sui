@@ -45,7 +45,7 @@ const CreateElectionPage = () => {
     return (
         <div className="create-election-page">
             <img className="main-image" src="https://cryptologos.cc/logos/sui-sui-logo.png" alt="https://cryptologos.cc/logos/sui-sui-logo.png" />
-            <h1 className="main-heading">BlockchainBard's Decentralized Voting System Powered by Sui Blockchain</h1>
+            <h1 className="main-heading">luzi's Decentralized Voting System Powered by Sui Blockchain</h1>
             <h2>Create Election</h2>
             <form onSubmit={handleCreateElection}>
                 <div className="form-group">
