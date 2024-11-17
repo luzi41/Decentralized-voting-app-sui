@@ -18,7 +18,8 @@ const CreateElectionPage = () => {
 
     const handleCreateElection = async (e : any) => {
         e.preventDefault();
-        // console.log(currentAccount?.address)
+        console.log(currentAccount?.address)
+        
         const newElection = {
             name: name,
             description: description,
