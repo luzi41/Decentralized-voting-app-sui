@@ -84,6 +84,13 @@ The smart contract is written in Move (Sui's language) and handles the following
 - **Close Election:** Automatically closes after the deadline, preventing further votes.
 - **View Results:** Provides a summary of votes for each candidate.
 
+## ToDo
+
+- **Voter's Readme doc:** How to register as a voter; how to vote.
+- **Election Website:** Information about rules, candidates and parties; readme for voters.
+- **Hide votes:** Hiding votes until election has ended (hard coded in smart contract).
+- **Complex elections:** Ability for more complexity in elections
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
