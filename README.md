@@ -88,7 +88,7 @@ The smart contract is written in Move (Sui's language) and handles the following
 
 - **Voter's Readme doc:** How to register as a voter; how to vote.
 - **Election Website:** Information about rules, candidates and parties; readme for voters.
-- **Hide votes:** Hiding votes until election has ended (hard coded in smart contract).
+- **Hide votes:** Encrypt votes until election has ended (PKI).
 - **Complex elections:** Ability for more complexity in elections
 
 ## License
